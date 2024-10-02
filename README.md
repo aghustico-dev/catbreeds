@@ -1,5 +1,5 @@
 # catbreeds
-#Pragma - Prueba de desarrolladores de aplicaciones en dispositivos móviles
+Pragma - Prueba de desarrolladores de aplicaciones en dispositivos móviles
 
 Para el presente proyecto se ha utilizado el concepto de arquitectura limpia (Clean architecture) con Providers como manejador de estados
 
