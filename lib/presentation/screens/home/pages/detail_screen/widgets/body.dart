@@ -1,14 +1,16 @@
-import 'package:catbreeds/domain/entities/entity_breed.dart';
-import 'package:catbreeds/presentation/common/theme/theme_text_scale_size.dart';
-import 'package:catbreeds/utils/constants/const_app_global.dart';
 import 'package:flutter/material.dart';
+
+import 'package:catbreeds/domain/entities/entity_breed.dart' as domain;
+import 'package:catbreeds/presentation/common/theme/theme_text_scale_size.dart'
+    as widgets;
+import 'package:catbreeds/utils/constants/const_app_global.dart' as utils;
 
 class BodyDetailScreenPage extends StatelessWidget {
   const BodyDetailScreenPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    late BreedEntity breed;
+    late domain.BreedEntity breed;
     Map<dynamic, dynamic> arguments =
         (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{})
             as Map;
@@ -31,7 +33,7 @@ class BodyDetailScreenPage extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: (MediaQuery.sizeOf(context).width *
-                    GlobalConstants.paddingWidth),
+                    utils.GlobalConstants.paddingWidth),
                 vertical: 10,
               ),
               child: SingleChildScrollView(
@@ -133,8 +135,8 @@ class BodyDetailScreenPage extends StatelessWidget {
               fontFamily: 'Roboto',
               fontSize: 14,
               fontWeight: FontWeight.normal,
-              color: GlobalConstants.primary),
-          textScaler: ScaleSize.textScaler(context),
+              color: utils.GlobalConstants.primary),
+          textScaler: widgets.ScaleSize.textScaler(context),
         ),
         (requireIndicador)
             ? Padding(
@@ -143,8 +145,8 @@ class BodyDetailScreenPage extends StatelessWidget {
                   value: (valorDeIndicador / 5),
                   minHeight: 10,
                   borderRadius: BorderRadius.circular(6),
-                  backgroundColor: GlobalConstants.primary,
-                  color: GlobalConstants.secondary,
+                  backgroundColor: utils.GlobalConstants.primary,
+                  color: utils.GlobalConstants.secondary,
                 ),
               )
             : const SizedBox.shrink()

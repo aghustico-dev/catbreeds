@@ -1,5 +1,6 @@
-import 'package:catbreeds/utils/util.dart';
 import 'package:flutter/material.dart';
+
+import 'package:catbreeds/utils/util.dart' as utils;
 import 'package:catbreeds/presentation/common/common.dart' as widgets;
 
 class BodySplashScreenPage extends StatefulWidget {
@@ -14,7 +15,7 @@ class _BodySplashScreenPageState extends State<BodySplashScreenPage> {
   void initState() {
     Future.delayed(const Duration(seconds: 3)).then((value) {
       if (mounted) {
-        goToLandingScreen(context);
+        utils.goToLandingScreen(context);
       }
     });
     super.initState();

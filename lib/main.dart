@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'dart:io';
 
 import 'package:catbreeds/utils/util.dart' as utils;
@@ -18,20 +17,17 @@ class CatBreedsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: utils.appProviders,
-      child: MaterialApp(
-        theme: ThemeData(useMaterial3: true),
-        debugShowCheckedModeBanner: false,
-        builder: (BuildContext context, Widget? widget) {
-          return MediaQuery(
-              data: MediaQuery.of(context)
-                  .copyWith(textScaler: const TextScaler.linear(1.1)),
-              child: widget!);
-        },
-        initialRoute: utils.LocalRouting.splashPage,
-        routes: utils.Routes().routes,
-      ),
+    return MaterialApp(
+      theme: ThemeData(useMaterial3: true),
+      debugShowCheckedModeBanner: false,
+      builder: (BuildContext context, Widget? widget) {
+        return MediaQuery(
+            data: MediaQuery.of(context)
+                .copyWith(textScaler: const TextScaler.linear(1.1)),
+            child: widget!);
+      },
+      initialRoute: utils.LocalRouting.splashPage,
+      routes: utils.Routes().routes,
     );
   }
 }

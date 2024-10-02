@@ -13,7 +13,7 @@ class DatasourceRemoteCatsImpl implements DatasourceRemoteCats {
 
   @override
   Future<List<model.CatModel>> get(int limit, String breed, int page) async {
-    Dio dio = await utils.dioInterceptos();
+    Dio dio = await utils.getOptions();
     String endPoint =
         '${utils.ApiEndpoint.api}/images/search?api_key=${utils.GlobalConstants.apiKey}&has_breeds=1&page=$page';
 
@@ -24,8 +24,6 @@ class DatasourceRemoteCatsImpl implements DatasourceRemoteCats {
     if (breed.isNotEmpty) {
       endPoint += '&breed_ids=$breed';
     }
-
-    print(endPoint);
 
     try {
       Response response = await dio.get(endPoint);

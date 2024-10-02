@@ -1,5 +1,5 @@
-import 'package:catbreeds/utils/util.dart';
 import 'package:flutter/material.dart';
+import 'package:catbreeds/utils/util.dart' as utils;
 
 InputDecoration otpInputDecoration(BuildContext context, String? hintText,
     Widget? suffixIcon, Widget? prefixIcon, AsyncSnapshot? snapshot) {
@@ -24,7 +24,7 @@ InputDecoration otpInputDecoration(BuildContext context, String? hintText,
         fontSize: 12,
         fontWeight: FontWeight.normal,
         height: 0.0,
-        color: GlobalConstants.secondary),
+        color: utils.GlobalConstants.secondary),
     hintStyle:
         const TextStyle(color: Color(0xFFB3B3B3), fontWeight: FontWeight.w400),
     prefixIconColor: WidgetStateColor.resolveWith((states) =>

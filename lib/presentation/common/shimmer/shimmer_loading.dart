@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:catbreeds/presentation/common/shimmer/shimmer_widget.dart';
+import 'package:catbreeds/presentation/common/shimmer/shimmer_widget.dart'
+    as widgets;
 
 class ShimmerLoading extends StatefulWidget {
   const ShimmerLoading({
@@ -25,7 +26,7 @@ class _ShimmerLoadingState extends State<ShimmerLoading> {
       _shimmerChanges!.removeListener(_onShimmerChange);
     }
 
-    _shimmerChanges = Shimmer.of(context)?.shimmerChanges;
+    _shimmerChanges = widgets.Shimmer.of(context)?.shimmerChanges;
     if (_shimmerChanges != null) {
       _shimmerChanges!.addListener(_onShimmerChange);
     }
@@ -50,7 +51,7 @@ class _ShimmerLoadingState extends State<ShimmerLoading> {
     }
 
     // Collect ancestor shimmer information.
-    final shimmer = Shimmer.of(context)!;
+    final shimmer = widgets.Shimmer.of(context)!;
     if (!shimmer.isSized) {
       return const SizedBox();
     }

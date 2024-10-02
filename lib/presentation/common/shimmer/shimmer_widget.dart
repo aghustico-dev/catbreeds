@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:catbreeds/presentation/common/shimmer/shimmer_loading.dart';
+import 'package:catbreeds/presentation/common/shimmer/shimmer_loading.dart'
+    as utils;
 
 class Shimmer extends StatefulWidget {
   static ShimmerState? of(BuildContext context) {
@@ -37,8 +38,8 @@ class ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
       stops: widget.linearGradient.stops,
       begin: widget.linearGradient.begin,
       end: widget.linearGradient.end,
-      transform:
-          SlidingGradientTransform(slidePercent: _shimmerController.value));
+      transform: utils.SlidingGradientTransform(
+          slidePercent: _shimmerController.value));
 
   bool get isSized =>
       (context.findRenderObject() as RenderBox?)?.hasSize ?? false;

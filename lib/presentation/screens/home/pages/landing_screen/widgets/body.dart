@@ -1,10 +1,10 @@
-import 'package:catbreeds/domain/entities/entity_cat.dart';
 import 'package:flutter/material.dart';
 
-import 'package:catbreeds/core/controllers/controller_configuraciones.dart';
-import 'package:catbreeds/presentation/common/common.dart';
-import 'package:catbreeds/utils/util.dart';
+import 'package:catbreeds/domain/entities/entity_cat.dart' as domain;
+import 'package:catbreeds/core/controllers/controller_configuraciones.dart'
+    as core;
 import 'package:catbreeds/presentation/common/common.dart' as widgets;
+import 'package:catbreeds/utils/util.dart' as utils;
 
 class BodyLandingScreenPage extends StatefulWidget {
   const BodyLandingScreenPage({super.key});
@@ -24,7 +24,7 @@ class _BodyLandingScreenPageState extends State<BodyLandingScreenPage> {
 
   @override
   void didChangeDependencies() {
-    loadCats = obtenerCats(context, page, breed: filtro);
+    loadCats = core.obtenerCats(context, page, breed: filtro);
     super.didChangeDependencies();
   }
 
@@ -35,7 +35,7 @@ class _BodyLandingScreenPageState extends State<BodyLandingScreenPage> {
       height: MediaQuery.sizeOf(context).height,
       padding: EdgeInsets.symmetric(
         horizontal: (MediaQuery.sizeOf(context).width *
-            GlobalConstants.paddingMinWidth),
+            utils.GlobalConstants.paddingMinWidth),
         vertical: 10,
       ),
       child: Column(
@@ -58,7 +58,7 @@ class _BodyLandingScreenPageState extends State<BodyLandingScreenPage> {
   Widget _buildFormularioBusqueda() {
     return Form(
       key: formkey,
-      child: CustomTextInputField(
+      child: widgets.CustomTextInputField(
         hintText: 'Ingrese un criterio de búsqueda',
         maxLines: 1,
         maxLength: 25,
@@ -66,7 +66,8 @@ class _BodyLandingScreenPageState extends State<BodyLandingScreenPage> {
         suffixIcon: IconButton(
           onPressed: () {
             page = 0;
-            loadCats = obtenerCats(context, page, breed: filtroController.text);
+            loadCats =
+                core.obtenerCats(context, page, breed: filtroController.text);
             setState(() {});
           },
           icon: const Icon(Icons.search),
@@ -98,7 +99,8 @@ class _BodyLandingScreenPageState extends State<BodyLandingScreenPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          const Icon(Icons.block, size: 140, color: GlobalConstants.secondary),
+          const Icon(Icons.block,
+              size: 140, color: utils.GlobalConstants.secondary),
           const SizedBox(height: 10),
           Text(
             'No hay coincidencias de búsqueda',
@@ -106,16 +108,16 @@ class _BodyLandingScreenPageState extends State<BodyLandingScreenPage> {
               fontFamily: 'Roboto',
               fontSize: 14,
               fontWeight: FontWeight.bold,
-              color: GlobalConstants.primary,
+              color: utils.GlobalConstants.primary,
             ),
-            textScaler: ScaleSize.textScaler(context),
+            textScaler: widgets.ScaleSize.textScaler(context),
           )
         ],
       ),
     );
   }
 
-  Widget buildListarCats(List<CatEntity> cats) {
+  Widget buildListarCats(List<domain.CatEntity> cats) {
     if (cats.isEmpty) {
       return _buildNotFound();
     }
@@ -129,7 +131,7 @@ class _BodyLandingScreenPageState extends State<BodyLandingScreenPage> {
                   child: FilledButton.tonal(
                     onPressed: () {
                       page--;
-                      loadCats = obtenerCats(context, page,
+                      loadCats = core.obtenerCats(context, page,
                           breed: filtroController.text);
                       setState(() {});
                     },
@@ -139,9 +141,9 @@ class _BodyLandingScreenPageState extends State<BodyLandingScreenPage> {
                         fontFamily: 'Roboto',
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
-                        color: GlobalConstants.primary,
+                        color: utils.GlobalConstants.primary,
                       ),
-                      textScaler: ScaleSize.textScaler(context),
+                      textScaler: widgets.ScaleSize.textScaler(context),
                     ),
                   ),
                 )
@@ -157,8 +159,8 @@ class _BodyLandingScreenPageState extends State<BodyLandingScreenPage> {
             child: FilledButton.tonal(
               onPressed: () {
                 page++;
-                loadCats =
-                    obtenerCats(context, page, breed: filtroController.text);
+                loadCats = core.obtenerCats(context, page,
+                    breed: filtroController.text);
                 setState(() {});
               },
               child: Text(
@@ -167,16 +169,16 @@ class _BodyLandingScreenPageState extends State<BodyLandingScreenPage> {
                   fontFamily: 'Roboto',
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
-                  color: GlobalConstants.primary,
+                  color: utils.GlobalConstants.primary,
                 ),
-                textScaler: ScaleSize.textScaler(context),
+                textScaler: widgets.ScaleSize.textScaler(context),
               ),
             ),
           )
         ]);
   }
 
-  Widget buildCardCat(CatEntity cat) {
+  Widget buildCardCat(domain.CatEntity cat) {
     if (cat.url!.isEmpty) {
       return const SizedBox.shrink();
     }
@@ -209,22 +211,22 @@ class _BodyLandingScreenPageState extends State<BodyLandingScreenPage> {
                         fontFamily: 'Roboto',
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: GlobalConstants.primary),
-                    textScaler: ScaleSize.textScaler(context),
+                        color: utils.GlobalConstants.primary),
+                    textScaler: widgets.ScaleSize.textScaler(context),
                   ),
                 ),
                 (cat.breeds!.isNotEmpty)
                     ? InkWell(
-                        onTap: () => goToDetails(context, cat.breeds![0].name!,
-                            cat.url!, cat.breeds![0]),
+                        onTap: () => utils.goToDetails(context,
+                            cat.breeds![0].name!, cat.url!, cat.breeds![0]),
                         child: Text(
                           'Más...',
                           style: const TextStyle(
                               fontFamily: 'Roboto',
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
-                              color: GlobalConstants.secondary),
-                          textScaler: ScaleSize.textScaler(context),
+                              color: utils.GlobalConstants.secondary),
+                          textScaler: widgets.ScaleSize.textScaler(context),
                         ),
                       )
                     : const SizedBox.shrink(),
@@ -236,7 +238,7 @@ class _BodyLandingScreenPageState extends State<BodyLandingScreenPage> {
               width: MediaQuery.sizeOf(context).width,
               height: 310,
               fit: BoxFit.cover,
-              scale: ScaleSize.textScaleFactor(context),
+              scale: widgets.ScaleSize.textScaleFactor(context),
             ),
             // const SizedBox(height: 15),
             (cat.breeds!.isNotEmpty)
@@ -250,8 +252,8 @@ class _BodyLandingScreenPageState extends State<BodyLandingScreenPage> {
                             fontFamily: 'Roboto',
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
-                            color: GlobalConstants.primary),
-                        textScaler: ScaleSize.textScaler(context),
+                            color: utils.GlobalConstants.primary),
+                        textScaler: widgets.ScaleSize.textScaler(context),
                       ),
                       Tooltip(
                         message: 'Inteligencia',
@@ -264,8 +266,8 @@ class _BodyLandingScreenPageState extends State<BodyLandingScreenPage> {
                                   fontFamily: 'Roboto',
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
-                                  color: GlobalConstants.primary),
-                              textScaler: ScaleSize.textScaler(context),
+                                  color: utils.GlobalConstants.primary),
+                              textScaler: widgets.ScaleSize.textScaler(context),
                             ),
                             const Icon(
                               Icons.psychology,
