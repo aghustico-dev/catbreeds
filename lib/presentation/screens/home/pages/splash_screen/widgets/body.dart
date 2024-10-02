@@ -1,3 +1,4 @@
+import 'package:catbreeds/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:catbreeds/presentation/common/common.dart' as widgets;
 
@@ -9,6 +10,16 @@ class BodySplashScreenPage extends StatefulWidget {
 }
 
 class _BodySplashScreenPageState extends State<BodySplashScreenPage> {
+  @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 3)).then((value) {
+      if (mounted) {
+        goToLandingScreen(context);
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -37,7 +48,7 @@ class _BodySplashScreenPageState extends State<BodySplashScreenPage> {
         child: Text(
           "Catbreeds",
           style: TextStyle(
-            fontFamily: 'SourceSansPro',
+            fontFamily: 'Roboto',
             fontSize: 30,
             fontWeight: FontWeight.w900,
             color: Colors.grey.shade800,

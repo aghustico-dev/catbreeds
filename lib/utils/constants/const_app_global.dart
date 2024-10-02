@@ -11,25 +11,11 @@ class GlobalConstants {
   static const String textPlain = 'text/plain';
   static const String applicationJson = 'application/json';
 
-  // static const String apiPaypal = "https://api.paypal.com"; // PROD
-  static const String apiPaypal = "https://api.sandbox.paypal.com"; // DEV
-  static const String paypalClienteId =
-      "AfwxXm2SLm2eCSeJtWu1GJOci6Bep3vri97tVDcbAEpCWZvdKPi4CVc2B4kOWogM8W7pNHSKQVHIyZ7s";
-  static const String paypalSecretKey =
-      "EPprApNeYC77uNgpwGLzP1fhtRHgDfVp5w3LMEGEnGmh1CR242VmughAvd5oWn11zRz2sr6v9y4kinxe";
-
-//PayU
-  // static const String payuApiKey = "ZPk6QzyGP54ogayiybmjNbR9lU";
-  // static const String payuApiLogin = "2y7F0ljeZQxCyEh";
-  // static const String payuPublicKey = "PKhl7ZWh8985uLt52M6H9RngEr";
-
-  // static const String linkPath = "https://servicio-rest.binquito.app/app"; // -- Producción
-  static const String linkPath =
-      "https://apirest-charcoal.lopezquito.com/app/api"; // -- Desarrollo
+  static const String linkPath = "https://api.thecatapi.com/v1";
+  static const String apiKey =
+      "live_99Qe4Ppj34NdplyLW67xCV7Ds0oSLKGgcWWYnSzMJY9C0QOu0HUR4azYxWkyW2nr";
 }
 
 class ApiEndpoint {
-  static const apiMaestro = "${GlobalConstants.linkPath}/v1/maestro";
-  static const apiUsuario = "${GlobalConstants.linkPath}/v1/usuario";
-  static const apiAuth = "${GlobalConstants.linkPath}/v1/auth";
+  static const api = GlobalConstants.linkPath;
 }

@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 
 class Params extends Equatable {
-  final String? id;
-  final String? token;
-  final Map<String, dynamic>? body;
+  final int? limit;
+  final String? breed;
+  final int? page;
 
-  const Params({this.id, this.token, this.body});
+  const Params({this.limit, this.breed, this.page});
 
   @override
-  List<Object> get props => [id!];
+  List<Object> get props => [];
 }

@@ -1,13 +1,11 @@
-import 'package:catbreeds/core/controllers/controller_configuraciones.dart';
-import 'package:catbreeds/utils/constants/constant.dart';
 import 'package:flutter/material.dart';
-// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:catbreeds/presentation/common/theme/theme_text_scale_size.dart';
-import 'package:catbreeds/core/managers/manager_keyboard.dart';
+import 'package:catbreeds/presentation/common/theme/theme_text_stroke.dart'
+    as widgets;
+import 'package:catbreeds/core/core.dart' as core;
 import 'package:catbreeds/utils/util.dart' as utils;
 
-class WidgetScaffold extends StatelessWidget with KeyboardManager {
+class WidgetScaffold extends StatelessWidget with core.KeyboardManager {
   final Widget body;
   final bool? gestureDetector;
   final bool? resizeToAvoidBottomInset;
@@ -37,17 +35,12 @@ class WidgetScaffold extends StatelessWidget with KeyboardManager {
     if (top == false) {
       topWidget = 60.0;
     } else {
-      if (deviceIsTablet(context)) {
+      if (core.deviceIsTablet(context)) {
         topWidget = 25.0;
       } else {
         topWidget = 5;
       }
     }
-
-    // margin: (top == false)
-    //   ? const EdgeInsets.only(top: 60)
-    //   : EdgeInsets.only(top: (deviceIsTablet(context) ? 25 : 5)),
-
     return topWidget;
   }
 
@@ -113,9 +106,6 @@ class WidgetScaffold extends StatelessWidget with KeyboardManager {
   Widget buildAppBar(BuildContext context, double topWidget) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      // margin: (top == false)
-      //     ? const EdgeInsets.only(top: 60)
-      //     : EdgeInsets.only(top: (deviceIsTablet(context) ? 25 : 5)),
       margin: EdgeInsets.only(top: topWidget),
       padding: EdgeInsets.symmetric(
           horizontal: MediaQuery.of(context).size.width *
@@ -126,16 +116,12 @@ class WidgetScaffold extends StatelessWidget with KeyboardManager {
         children: <Widget>[
           buildBotonesTop(context),
           Expanded(
-            child: Text(
-              title.toString(),
-              style: const TextStyle(
-                  fontFamily: 'SourceSansPro',
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: GlobalConstants.primary),
-              textScaler: ScaleSize.textScaler(context),
-              textAlign: textAlign,
-            ),
+            child: widgets.WidgetTextStroke(
+                texto: title.toString(),
+                fontFamily: 'Roboto',
+                fontSize: 16,
+                strokeWidth: 2,
+                alignment: Alignment.center),
           ),
           const SizedBox(width: 30, height: 30)
         ],
@@ -144,37 +130,31 @@ class WidgetScaffold extends StatelessWidget with KeyboardManager {
   }
 
   Widget buildBotonesTop(BuildContext context) {
-    return Container(
-      width: 36,
-      height: 36,
-      margin: const EdgeInsets.only(right: 10),
-      decoration: BoxDecoration(
-        color: Colors.black54.withOpacity(0.5),
-        borderRadius: BorderRadius.circular(18),
-      ),
-      child: Navigator.canPop(context)
-          ? InkWell(
-              onTap: () => Navigator.pop(context),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: const Icon(
-                  Icons.close,
-                  // FontAwesomeIcons.angleLeft,
-                  color: Colors.white,
-                  size: 18,
-                  applyTextScaling: true,
-                  // shadows: <BoxShadow>[
-                  //   BoxShadow(
-                  //       color: Colors.white,
-                  //       blurRadius: 5.0,
-                  //       offset: Offset(-0.05, 3.0))
-                  // ],
-                ),
-              ),
-            )
-          : const SizedBox.shrink(),
-    );
+    if (Navigator.canPop(context)) {
+      return Container(
+        width: 36,
+        height: 36,
+        margin: const EdgeInsets.only(right: 10),
+        decoration: BoxDecoration(
+          color: Colors.black54.withOpacity(0.5),
+          borderRadius: BorderRadius.circular(18),
+        ),
+        child: InkWell(
+          onTap: () => Navigator.pop(context),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: const Icon(
+              Icons.arrow_back_ios_outlined,
+              color: Colors.white,
+              size: 18,
+              applyTextScaling: true,
+            ),
+          ),
+        ),
+      );
+    }
+    return const SizedBox.shrink();
   }
 }

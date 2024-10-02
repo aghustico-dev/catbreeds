@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-// import 'package:charcoal/domain/entities/entity.dart' as domain;
+// import 'package:catbreeds/domain/entities/entity.dart' as domain;
 
 class ProviderConfiguracion extends ChangeNotifier {
   // Map<String, dynamic> _countryLocale = {};
